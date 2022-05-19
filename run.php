@@ -15,11 +15,12 @@ $action = readline('Enter action 8 for up, 2 for down, 6 for right, 4 for left ,
 try {
     $action = ActionFactory::action($action);
     $action->handle($board);
-    echo '***** Moved to ' . $action->name().' ***** ';
+    $board->setRandomTile();
+    echo '***** Moved to ' . $action->name() . ' ***** ';
     $board->show();
     goto action;
 } catch (InvalidArgumentException $exception) {
-    echo PHP_EOL . '***********' . $exception->getMessage() . '***********' . PHP_EOL;
+    echo PHP_EOL . '***********' . $exception->getMessage() . '***** Try Again ******' . PHP_EOL;
     goto action;
 } catch (Exception) {
     echo PHP_EOL . '***********' . 'Thanks for playing' . '***********' . PHP_EOL;

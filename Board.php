@@ -75,11 +75,11 @@ class Board
 
     public function score(): string
     {
-        return PHP_EOL.'Max Tile: '.$this->getMaxTile() . PHP_EOL . 'Total Score: '.$this->total();
+        return PHP_EOL . 'Max Tile: ' . $this->getMaxTile() . PHP_EOL . 'Total Score: ' . $this->total();
     }
 
     private function total(): int
     {
-        return array_reduce($this->board, fn($carry, $item) => array_sum($item));
+        return array_reduce($this->board, fn($carry, $item) => $carry + array_sum($item));
     }
 }

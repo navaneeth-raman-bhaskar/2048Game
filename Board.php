@@ -23,8 +23,7 @@ class Board
 
     public function generateRandomTile(): int
     {
-        $max = (int)log($this->getMaxTile(), 2);
-        return 2 ** rand(1, $max ?: 1);
+        return 2 ** rand(1, 2);
     }
 
     public function getMaxTile(): int
@@ -96,5 +95,11 @@ class Board
     public function getSize(): int
     {
         return $this->size;
+    }
+
+    public function noMovesLeft(): bool
+    {
+        /** @todo  add logic later */
+        return false;
     }
 }

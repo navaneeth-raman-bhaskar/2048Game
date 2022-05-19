@@ -30,7 +30,7 @@ try {
     echo '***** Cannot Moved to ' . $action->name() . ' *** Try Other ** ' . PHP_EOL;
     goto action;
 } catch (BoardFullError) {
-    if (/*$board->noMovesLeft()*/0) {
+    if ($board->noMovesLeft()) {
         echo PHP_EOL . '###### ' . 'No Moves Left. Game Over' . ' ######' . PHP_EOL;
         echo 'Your score is :' . $board->score();
         die();

@@ -23,7 +23,7 @@ class Board
 
     public function generateRandomTile(): int
     {
-        return 2 ** rand(1, 2);
+        return (rand(1, 100) > 90 ? 4 : 2);
     }
 
     public function getMaxTile(): int

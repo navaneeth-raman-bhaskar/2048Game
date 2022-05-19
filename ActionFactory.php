@@ -10,7 +10,7 @@ class ActionFactory
             '2' => new Down,
             '6' => new Right,
             '4' => new Left,
-            '0' => throw new \Exception('End'),
+            '0' => new ExitGame(),
             default => throw new \InvalidArgumentException('Invalid action')
         };
     }

@@ -27,7 +27,7 @@ class Board
         return 2 ** rand(1, $max ?: 1);
     }
 
-    private function getMaxTile(): int
+    public function getMaxTile(): int
     {
         $max = 0;
         foreach ($this->board as $array) {
@@ -47,7 +47,7 @@ class Board
     public function setRandomTile(): void
     {
         if ($this->isFull()) {
-            return; //cant insert new tile for now
+            throw new \BoardFullError();
         }
 
         do {
@@ -75,11 +75,26 @@ class Board
 
     public function score(): string
     {
-        return PHP_EOL . 'Max Tile: ' . $this->getMaxTile() . PHP_EOL . 'Total Score: ' . $this->total();
+        return PHP_EOL . 'Highest Tile: ' . $this->getMaxTile() . PHP_EOL . 'Total Score: ' . $this->total();
     }
 
     private function total(): int
     {
         return array_reduce($this->board, fn($carry, $item) => $carry + array_sum($item));
+    }
+
+    public function setBoard(array $array): void
+    {
+        $this->board = $array;
+    }
+
+    public function getBoard(): array
+    {
+        return $this->board;
+    }
+
+    public function getSize(): int
+    {
+        return $this->size;
     }
 }

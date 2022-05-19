@@ -42,7 +42,7 @@ class Board
 
     /**
      * will take too much time to find find empty index
-     * @todo can be ptimized the logic
+     * @todo can be optimized the logic
      */
     public function setRandomTile(): void
     {

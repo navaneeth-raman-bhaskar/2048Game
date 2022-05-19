@@ -22,6 +22,10 @@ try {
 } catch (InvalidArgumentException $exception) {
     echo PHP_EOL . '***********' . $exception->getMessage() . '***** Try Again ******' . PHP_EOL;
     goto action;
+} catch (ActionError $exception) {
+    echo PHP_EOL . '***********' . $exception->getMessage() . '***********' . PHP_EOL;
+    echo '***** Cannot Moved to ' . $action->name() . ' *** Try Other ** ' . PHP_EOL;
+    goto action;
 } catch (Exception) {
     echo PHP_EOL . '***********' . 'Thanks for playing' . '***********' . PHP_EOL;
     $board->show();

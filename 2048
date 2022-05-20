@@ -34,7 +34,7 @@ try {
 } catch (ActionError $exception) {
     echo PHP_EOL . '*********** ' . $exception->getMessage() . '*** Try Other **' . PHP_EOL;
     goto action;
-} catch (BoardFullError) {
+} catch (BoardFullError $exception) {
     echo PHP_EOL . '###### ' . 'No Moves Left. Game Over' . ' ######' . PHP_EOL;
     echo 'Your score:' . $board->score();
     die();

@@ -4,12 +4,14 @@ class Board
 {
     private array $board = [];
     private static int $score = 0;
+    private int $size;
 
     /**
      * @throws BoardFullError
      */
-    public function __construct(private int $size)
+    public function __construct(int $size)
     {
+        $this->size = $size;
         $this->setRandomTile();
     }
 

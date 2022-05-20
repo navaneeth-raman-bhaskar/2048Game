@@ -5,13 +5,19 @@ class ActionFactory
 {
     public static function make($action): Action
     {
-        return match ($action) {
-            '8' => new Up(),
-            '2' => new Down,
-            '6' => new Right,
-            '4' => new Left,
-            '0' => new ExitGame(),
-            default => throw new \InvalidArgumentException('Invalid action')
-        };
+        switch ($action) {
+            case '8':
+                return new Up();
+            case '2':
+                return new Down();
+            case '6':
+                return new Right();
+            case '4':
+                return new Left();
+            case '0':
+                return new ExitGame();
+            default :
+                throw new \InvalidArgumentException('Invalid action');
+        }
     }
 }

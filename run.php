@@ -4,7 +4,12 @@ spl_autoload_register(function ($class) {
     include $class . '.php';
 });
 
+size:
 $size = readline('Enter the size of the board : ');
+if ($size <= 0) {
+    echo PHP_EOL . '*********** ' . 'Enter a natural number' . ' ***** Try Again ******' . PHP_EOL;
+    goto size;
+}
 
 $board = new Board($size);
 $board->show();
@@ -32,7 +37,7 @@ try {
 } catch (BoardFullError) {
     if ($board->noMovesLeft()) {
         echo PHP_EOL . '###### ' . 'No Moves Left. Game Over' . ' ######' . PHP_EOL;
-        echo 'Your score is :' . $board->score();
+        echo 'Your score:' . $board->score();
         die();
     }
     goto action;

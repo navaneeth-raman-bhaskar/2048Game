@@ -3,7 +3,12 @@
 class Board
 {
     private array $board = [];
+    private static int $score = 0;
+    private static int $max = 0;
 
+    /**
+     * @throws BoardFullError
+     */
     public function __construct(private int $size)
     {
         $this->setRandomTile();
@@ -23,24 +28,22 @@ class Board
 
     public function generateRandomTile(): int
     {
-        return (rand(1, 100) > 90 ? 4 : 2);
+        $random = rand(1, 100) > 90 ? 4 : 2;
+        if ($this::$max < $random) {
+            $this::$max = $random;
+        }
+        $this::$score += $random;
+        return $random;
     }
 
     public function getMaxTile(): int
     {
-        $max = 0;
-        foreach ($this->board as $array) {
-            foreach ($array as $value) {
-                if ($value > $max) {
-                    $max = $value;
-                }
-            }
-        }
-        return $max;
+        return $this::$max;
     }
 
     /**
      * will take too much time to find find empty index
+     * @throws BoardFullError
      * @todo can be optimized the logic
      */
     public function setRandomTile(): void
@@ -74,12 +77,7 @@ class Board
 
     public function score(): string
     {
-        return PHP_EOL . 'Highest Tile: ' . $this->getMaxTile() . PHP_EOL . 'Total Score: ' . $this->total();
-    }
-
-    private function total(): int
-    {
-        return array_reduce($this->board, fn($carry, $item) => $carry + array_sum($item));
+        return PHP_EOL . 'Highest Tile: ' . $this->getMaxTile() . PHP_EOL . 'Total Score: ' . $this::$score;
     }
 
     public function resetBoard(array $array): void

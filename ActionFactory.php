@@ -3,7 +3,7 @@
 
 class ActionFactory
 {
-    public static function action($action): Action
+    public static function make($action): Action
     {
         return match ($action) {
             '8' => new Up(),

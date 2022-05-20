@@ -48,7 +48,7 @@ class Board
      */
     public function setRandomTile(): void
     {
-        if ($this->isFull()) {
+        if ($this->isFull() and $this->noMovesLeft()) {
             throw new \BoardFullError();
         }
 

@@ -5,6 +5,9 @@ class Right implements Action
 {
     use \MergeOperation;
 
+    /**
+     * @throws ActionError
+     */
     public function handle(Board $board)
     {
         $array = $board->getBoard();
@@ -41,6 +44,7 @@ class Right implements Action
             $this->resetTemp();
             $this->resetResult();
         }
+        $this->check($array, $board);
     }
 
     public function name(): string

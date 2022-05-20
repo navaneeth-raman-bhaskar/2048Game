@@ -5,6 +5,9 @@ class Up implements Action
 {
     use \MergeOperation;
 
+    /**
+     * @throws ActionError
+     */
     public function handle(Board $board)
     {
         $array = $board->getBoard();
@@ -41,7 +44,7 @@ class Up implements Action
             $this->resetTemp();
             $this->resetResult();
         }
-        //throw new \ActionError();
+        $this->check($array, $board);
     }
 
     public function name(): string

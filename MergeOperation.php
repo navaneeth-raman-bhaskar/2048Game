@@ -4,6 +4,7 @@ trait MergeOperation
 {
     private array $temp = [];
     private array $result = [];
+    private bool $success = true;
 
     private function resetTemp(): void
     {
@@ -38,5 +39,27 @@ trait MergeOperation
     private function isEmptyTemp(): bool
     {
         return empty($this->temp);
+    }
+
+    /**
+     * @throws ActionError
+     */
+    private function check(array $array, Board $board): void
+    {
+        $this->success = false;
+        foreach ($array as $key => $rows) {
+            if (array_filter($rows) != array_filter($board->getBoard()[$key])) {
+                $this->success = true;
+                break;
+            }
+        }
+        if (!$this->getSuccessFlag()) {
+            throw new \ActionError('Cannot Moved to ' . $this->name());
+        }
+    }
+
+    public function getSuccessFlag(): bool
+    {
+        return $this->success;
     }
 }

@@ -18,7 +18,7 @@ action:
 $action = readline('Enter action 8 for up, 2 for down, 6 for right, 4 for left , 0 for stop: ');
 
 try {
-    $action = ActionFactory::action($action);
+    $action = ActionFactory::make($action);
     $action->handle($board);
     $board->setRandomTile();
     echo '----- Moved to ' . $action->name() . ' -----' . PHP_EOL;
@@ -31,14 +31,10 @@ try {
     echo PHP_EOL . '*********** ' . $exception->getMessage() . ' ***** Try Again ******' . PHP_EOL;
     goto action;
 } catch (ActionError $exception) {
-    echo PHP_EOL . '*********** ' . $exception->getMessage() . ' ***********' . PHP_EOL;
-    echo '***** Cannot Moved to ' . $action->name() . ' *** Try Other ** ' . PHP_EOL;
+    echo PHP_EOL . '*********** ' . $exception->getMessage() . '*** Try Other **' . PHP_EOL;
     goto action;
 } catch (BoardFullError) {
-    if ($board->noMovesLeft()) {
-        echo PHP_EOL . '###### ' . 'No Moves Left. Game Over' . ' ######' . PHP_EOL;
-        echo 'Your score:' . $board->score();
-        die();
-    }
-    goto action;
+    echo PHP_EOL . '###### ' . 'No Moves Left. Game Over' . ' ######' . PHP_EOL;
+    echo 'Your score:' . $board->score();
+    die();
 }

@@ -25,16 +25,6 @@ trait MergeOperation
         $this->result[] = $value;
     }
 
-   /* private function prependTemp(int $value): void
-    {
-        array_unshift($this->temp, $value);
-    }
-
-    private function prependResult(int $value): void
-    {
-        array_unshift($this->result, $value);
-    }*/
-
     private function shiftTemp(): int
     {
         return array_shift($this->temp);
@@ -44,16 +34,6 @@ trait MergeOperation
     {
         return array_shift($this->result);
     }
-
-   /* private function popTemp(): int
-    {
-        return array_pop($this->temp);
-    }
-
-    private function popResult(): ?int
-    {
-        return array_pop($this->result);
-    }*/
 
     private function isEmptyTemp(): bool
     {

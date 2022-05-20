@@ -4,7 +4,6 @@ class Board
 {
     private array $board = [];
     private static int $score = 0;
-    private static int $max = 0;
 
     /**
      * @throws BoardFullError
@@ -29,16 +28,21 @@ class Board
     public function generateRandomTile(): int
     {
         $random = rand(1, 100) > 90 ? 4 : 2;
-        if ($this::$max < $random) {
-            $this::$max = $random;
-        }
         $this::$score += $random;
         return $random;
     }
 
     public function getMaxTile(): int
     {
-        return $this::$max;
+        $max = 0;
+        foreach ($this->board as $array) {
+            foreach ($array as $value) {
+                if ($value > $max) {
+                    $max = $value;
+                }
+            }
+        }
+        return $max;
     }
 
     /**

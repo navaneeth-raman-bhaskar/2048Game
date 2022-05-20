@@ -82,9 +82,14 @@ class Board
         return array_reduce($this->board, fn($carry, $item) => $carry + array_sum($item));
     }
 
-    public function setBoard(array $array): void
+    public function resetBoard(array $array): void
     {
         $this->board = $array;
+    }
+
+    public function setBoard(int $row, int $col, ?int $value): void
+    {
+        $this->board[$row][$col] = $value;
     }
 
     public function getBoard(): array

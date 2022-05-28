@@ -6,8 +6,8 @@ Supported version  `PHP 7.4`, `PHP 8.0` and `PHP 8.1`
 
 ## Want to try?
 
-- Fork or clone the repo
-- Then run `php run.php`
+- Fork the repo
+- Go to commandline and run `php 2048`
 - Enjoy!
 
 ## Releases

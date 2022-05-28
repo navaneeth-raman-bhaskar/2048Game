@@ -16,3 +16,5 @@ Supported version  `PHP 7.4`, `PHP 8.0` and `PHP 8.1`
 ## Output
 
 ![Sample output](output.png)
+
+![Sample output](output2.png)
